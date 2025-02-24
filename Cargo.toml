@@ -76,6 +76,7 @@ rustls = { version = "0.23", default-features = false, features = ["aws-lc-rs"] 
 sparkle = "0.1.26"
 thiserror = "1.0"
 winit = { version = "0.30", features = ["rwh_06"] }
+rfd = "0.15"
 # Servo repo crates
 background_hang_monitor = { git = "https://github.com/servo/servo.git", rev = "47f6c50", features = ["sampler"] }
 base = { git = "https://github.com/servo/servo.git", rev = "47f6c50" }

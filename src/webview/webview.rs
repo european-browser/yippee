@@ -288,6 +288,34 @@ impl Window {
                     log::error!("Failed to get WebView {webview_id:?} in this window.");
                 }
             }
+            EmbedderMsg::SelectFiles(
+                _webview_id,
+                _filter_pattern,
+                _allow_multiple_files,
+                ipc_sender,
+            ) => {
+                if _allow_multiple_files {
+                    rfd::FileDialog::new()
+                        .pick_files()
+                        .map(|files| {
+                            ipc_sender.send(Some(files)).unwrap();
+                        })
+                        .unwrap_or_else(|| {
+                            log::error!("Failed to open file dialog.");
+                            ipc_sender.send(None).unwrap();
+                        });
+                } else {
+                    rfd::FileDialog::new()
+                        .pick_file()
+                        .map(|file| {
+                            ipc_sender.send(Some(vec![file])).unwrap();
+                        })
+                        .unwrap_or_else(|| {
+                            log::error!("Failed to open file dialog.");
+                            ipc_sender.send(None).unwrap();
+                        });
+                }
+            }
             e => {
                 log::trace!("Verso WebView isn't supporting this message yet: {e:?}")
             }
