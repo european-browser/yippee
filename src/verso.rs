@@ -23,7 +23,6 @@ use ipc_channel::ipc::{self, IpcSender};
 use ipc_channel::router::ROUTER;
 use layout_thread_2020;
 use log::{Log, Metadata, Record};
-use media::{GlApi, GlContext, NativeDisplay, WindowGLContext};
 use net::resource_thread;
 use profile;
 use script::{self, JSEngineSetup};
