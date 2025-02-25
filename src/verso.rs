@@ -126,7 +126,6 @@ impl Verso {
         // Reserving a namespace to create TopLevelBrowsingContextId.
         PipelineNamespace::install(PipelineNamespaceId(0));
         let (mut window, rendering_context) = Window::new(evl, window_settings);
-
         let event_loop_waker = Box::new(Waker(proxy));
         let opts = opts::get();
 

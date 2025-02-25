@@ -288,6 +288,12 @@ impl Window {
                     log::error!("Failed to get WebView {webview_id:?} in this window.");
                 }
             }
+            EmbedderMsg::ShowIME(_webview_id, input_method_type, text, multiline, position) => {
+                self.show_ime(input_method_type, text, multiline, position);
+            }
+            EmbedderMsg::HideIME(_webview_id) => {
+                self.hide_ime();
+            }
             e => {
                 log::trace!("Verso WebView isn't supporting this message yet: {e:?}")
             }
